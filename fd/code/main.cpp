@@ -88,21 +88,24 @@ int main(int argc, const char *argv[]) {
     CascadeClassifier haar_cascade;
     haar_cascade.load(fn_haar);
     // Get a handle to the Video device:
-    VideoCapture cap(deviceId);
+    //VideoCapture cap(deviceId);
     // Check if we can use this device at all:
-    if(!cap.isOpened()) {
-        cerr << "Capture Device ID " << deviceId << "cannot be opened." << endl;
-        return -1;
-    }
+    //if(!cap.isOpened()) {
+    //    cerr << "Capture Device ID " << deviceId << "cannot be opened." << endl;
+    //    return -1;
+    //}
     // Holds the current frame from the Video device:
     Mat frame;
+    Mat img = imread("sample/picture.jpg");
+    Mat original = img.clone();
     for(;;) {
-        cap >> frame;
+        //cap >> frame;
         // Clone the current frame:
-        Mat original = frame.clone();
+        //Mat original = frame.clone();
         // Convert the current frame to grayscale:
+        img = original.clone();
         Mat gray;
-        cvtColor(original, gray, CV_BGR2GRAY);
+        cvtColor(img, gray, CV_BGR2GRAY);
         // Find the faces in the frame:
         vector< Rect_<int> > faces;
         haar_cascade.detectMultiScale(gray, faces);
@@ -130,7 +133,7 @@ int main(int argc, const char *argv[]) {
             int prediction = model->predict(face_resized);
             // And finally write all we've found out to the original image!
             // First of all draw a green rectangle around the detected face:
-            rectangle(original, face_i, CV_RGB(0, 255,0), 1);
+            rectangle(img, face_i, CV_RGB(0, 255,0), 1);
             // Create the text we will annotate the box with:
             string box_text = "";
             box_text = format("Prediction = %d", prediction);
@@ -139,12 +142,13 @@ int main(int argc, const char *argv[]) {
             int pos_x = std::max(face_i.tl().x - 10, 0);
             int pos_y = std::max(face_i.tl().y - 10, 0);
             // And now put it into the image:
-            putText(original, box_text, Point(pos_x, pos_y), FONT_HERSHEY_PLAIN, 1.0, CV_RGB(0,255,0), 2.0);
+            putText(img, box_text, Point(pos_x, pos_y), FONT_HERSHEY_PLAIN, 1.0, CV_RGB(0,255,0), 2.0);
         }
         // Show the result:
-        imshow("face_recognizer", original);
+        //img.resize(100, Scalar(0,0,255));
+        imshow("face_recognizer", img);
         // And display it:
-        char key = (char) waitKey(20);
+        char key = (char) waitKey(2000);
         // Exit this loop on escape:
         if(key == 27)
             break;
