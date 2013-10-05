@@ -137,3 +137,9 @@ if __name__ == "__main__":
   CropFace(image, eye_left=(913,1262), eye_right=(1366,1234), offset_pct=(0.2,0.2), dest_sz=(200,200)).save("./cropped/manish_20_20_200_200.jpg")
   CropFace(image, eye_left=(913,1262), eye_right=(1366,1234), offset_pct=(0.3,0.3), dest_sz=(200,200)).save("./cropped/manish_30_30_200_200.jpg")
 
+
+  image =  Image.open("./sample/trilok.jpg")
+  CropFace(image, eye_left=(817,623), eye_right=(1022,650), offset_pct=(0.1,0.1), dest_sz=(200,200)).save("./cropped/trilok_10_10_200_200.jpg")
+  CropFace(image, eye_left=(817,623), eye_right=(1022,650), offset_pct=(0.2,0.2), dest_sz=(200,200)).save("./cropped/trilok_20_20_200_200.jpg")
+  CropFace(image, eye_left=(817,623), eye_right=(1022,650), offset_pct=(0.3,0.3), dest_sz=(200,200)).save("./cropped/trilok_30_30_200_200.jpg")
+
