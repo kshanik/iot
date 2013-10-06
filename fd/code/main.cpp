@@ -51,7 +51,7 @@ int main(int argc, const char *argv[]) {
     // Check for valid command line arguments, print usage
     // if no arguments were given.
     if (argc != 5) {
-        cout << "usage: " << argv[0] << " </path/to/haar_cascade> </path/to/csv.ext> </path/to/device id>" << endl;
+        cout << "usage: " << argv[0] << " </path/to/haar_cascade> </path/to/csv.ext> </path/to/image> </path/to/output_image>" << endl;
         cout << "\t </path/to/haar_cascade> -- Path to the Haar Cascade for face detection." << endl;
         cout << "\t </path/to/csv.ext> -- Path to the CSV file with the face database." << endl;
         cout << "\t </path/to/image> -- Path to an image to scan for faces." << endl;
